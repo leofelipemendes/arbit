@@ -11,4 +11,4 @@
 |
 */
 
-Route::get('/', 'TestesController@index');
+Route::get('/', 'NegocieCoinsController@index');
