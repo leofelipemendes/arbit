@@ -11,4 +11,6 @@
 |
 */
 
-Route::get('/', 'NegocieCoinsController@index');
+Route::get('/ticker', 'NegocieCoinsController@getTickerBtcBrl');
+Route::get('/orders', 'NegocieCoinsController@getOrderBookBtcBrl');
+Route::get('/trades', 'NegocieCoinsController@getTradesBtcBrl');

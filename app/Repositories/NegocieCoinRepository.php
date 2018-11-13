@@ -11,8 +11,5 @@ use Prettus\Repository\Contracts\RepositoryInterface;
  */
 interface NegocieCoinRepository extends RepositoryInterface
 {
-public function getTickerBtcBrl();
-public function getOrderBookBtcBrl();
-public function getTradesBtcBrl($initial,$final);
-
+    
 }

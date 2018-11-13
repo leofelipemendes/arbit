@@ -11,6 +11,7 @@ use App\Http\Requests\NegocieCoinCreateRequest;
 use App\Http\Requests\NegocieCoinUpdateRequest;
 use App\Repositories\NegocieCoinRepository;
 use App\Validators\NegocieCoinValidator;
+use App\Services\NegocieCoinService;
 
 /**
  * Class NegocieCoinsController.
@@ -23,6 +24,11 @@ class NegocieCoinsController extends Controller
      * @var NegocieCoinRepository
      */
     protected $repository;
+    
+    /**
+     * @var NegocieCoinService
+     */
+    protected $service;
 
     /**
      * @var NegocieCoinValidator
@@ -35,10 +41,11 @@ class NegocieCoinsController extends Controller
      * @param NegocieCoinRepository $repository
      * @param NegocieCoinValidator $validator
      */
-    public function __construct(NegocieCoinRepository $repository, NegocieCoinValidator $validator)
+    public function __construct(NegocieCoinRepository $repository, NegocieCoinValidator $validator,NegocieCoinService $service)
     {
         $this->repository = $repository;
         $this->validator  = $validator;
+        $this->service = $service;
     }
 
     /**
@@ -46,153 +53,23 @@ class NegocieCoinsController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function getTickerBtcBrl()
     {
-        $this->repository->pushCriteria(app('Prettus\Repository\Criteria\RequestCriteria'));
-        $negocieCoins = json_decode($this->repository->getTickerBtcBrl(),true);
+        $negocieCoins = json_decode($this->service->getApiTickerBtcBrl(),true);
         return $negocieCoins;
   
         //return view('negocieCoins.index', compact('negocieCoins'));
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  NegocieCoinCreateRequest $request
-     *
-     * @return \Illuminate\Http\Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
-    public function store(NegocieCoinCreateRequest $request)
+    
+    public function getOrderBookBtcBrl()
     {
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_CREATE);
-
-            $negocieCoin = $this->repository->create($request->all());
-
-            $response = [
-                'message' => 'NegocieCoin created.',
-                'data'    => $negocieCoin->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-            if ($request->wantsJson()) {
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
+        $negocieCoins = json_decode($this->service->getApiOrderBookBtcBrl(),true);
+        return $negocieCoins;                
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
+    
+    public function getTradesBtcBrl()
     {
-        $negocieCoin = $this->repository->find($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'data' => $negocieCoin,
-            ]);
-        }
-
-        return view('negocieCoins.show', compact('negocieCoin'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $negocieCoin = $this->repository->find($id);
-
-        return view('negocieCoins.edit', compact('negocieCoin'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  NegocieCoinUpdateRequest $request
-     * @param  string            $id
-     *
-     * @return Response
-     *
-     * @throws \Prettus\Validator\Exceptions\ValidatorException
-     */
-    public function update(NegocieCoinUpdateRequest $request, $id)
-    {
-        try {
-
-            $this->validator->with($request->all())->passesOrFail(ValidatorInterface::RULE_UPDATE);
-
-            $negocieCoin = $this->repository->update($request->all(), $id);
-
-            $response = [
-                'message' => 'NegocieCoin updated.',
-                'data'    => $negocieCoin->toArray(),
-            ];
-
-            if ($request->wantsJson()) {
-
-                return response()->json($response);
-            }
-
-            return redirect()->back()->with('message', $response['message']);
-        } catch (ValidatorException $e) {
-
-            if ($request->wantsJson()) {
-
-                return response()->json([
-                    'error'   => true,
-                    'message' => $e->getMessageBag()
-                ]);
-            }
-
-            return redirect()->back()->withErrors($e->getMessageBag())->withInput();
-        }
-    }
-
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $deleted = $this->repository->delete($id);
-
-        if (request()->wantsJson()) {
-
-            return response()->json([
-                'message' => 'NegocieCoin deleted.',
-                'deleted' => $deleted,
-            ]);
-        }
-
-        return redirect()->back()->with('message', 'NegocieCoin deleted.');
+        $negocieCoins = json_decode($this->service->getApiTradesBtcBrl(),true);
+        return $negocieCoins;                
     }
 }
