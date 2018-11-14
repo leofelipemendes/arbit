@@ -35,7 +35,7 @@ Route::prefix('mbtc')->group(function () {
     
 });
 
-Route::prefix('tickres')->group(function () {
+Route::prefix('tickers')->group(function () {
 
     Route::get('ticker', 'TickersController@getTicker');
     
