@@ -16,7 +16,7 @@ namespace App\Services;
 class CurlApiService {
 
     public function getCurlApi($url) {
-
+        
         $curl = curl_init();
 
         curl_setopt_array($curl, array(

@@ -3,12 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
-use Prettus\Validator\Contracts\ValidatorInterface;
-use Prettus\Validator\Exceptions\ValidatorException;
-use App\Http\Requests\BitcoinTradeCreateRequest;
-use App\Http\Requests\BitcoinTradeUpdateRequest;
 use App\Repositories\BitcoinTradeRepository;
 use App\Validators\BitcoinTradeValidator;
 use \App\Services\BitCoinTradeService;

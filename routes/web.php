@@ -25,3 +25,12 @@ Route::prefix('btctrade')->group(function () {
     Route::get('orders', 'BitcoinTradesController@getOrderBookBtcBrl');
     Route::get('trades', 'BitcoinTradesController@getTradesBtcBrl');
 });
+
+Route::prefix('mbtc')->group(function () {
+
+    Route::get('ticker', 'MercadoBitcoinsController@getTickerBtcBrl');
+    Route::get('orders', 'MercadoBitcoinsController@getOrderBookBtcBrl');
+    Route::get('trades', 'MercadoBitcoinsController@getTradesBtcBrl');
+    Route::get('daysummary', 'MercadoBitcoinsController@getDaySummary');
+    
+});
