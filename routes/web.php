@@ -10,8 +10,12 @@
   | contains the "web" middleware group. Now create something great!
   |
  */
-
-
+ Route::get('/', function(){
+     return view('welcome');
+ });
+ Route::get('/teste', function(){
+     return view('testev');
+ });
 Route::prefix('ncoin')->group(function () {
 
     Route::get('ticker', 'NegocieCoinsController@getTickerBtcBrl');
