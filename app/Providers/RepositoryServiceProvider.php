@@ -27,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(\App\Repositories\NegocieCoinRepository::class, \App\Repositories\NegocieCoinRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\BitcoinTradeRepository::class, \App\Repositories\BitcoinTradeRepositoryEloquent::class);
         $this->app->bind(\App\Repositories\MercadoBitcoinRepository::class, \App\Repositories\MercadoBitcoinRepositoryEloquent::class);
+        $this->app->bind(\App\Repositories\TickerRepository::class, \App\Repositories\TickerRepositoryEloquent::class);
         //:end-bindings:
     }
 }

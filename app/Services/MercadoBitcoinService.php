@@ -22,13 +22,13 @@ class MercadoBitcoinService {
     }
 
     public function getApiOrderBookBtcBrl() {
-        $url = 'https://www.mercadobitcoin.net/api/BTC/orderbook';
+        $url = 'https://www.mercadobitcoin.net/api/BTC/orderbook/';
         $response = $this->curl->getCurlApi($url);
         return $response;
     }
 
     public function getApiTickerBtcBrl() {
-        $url = 'https://www.mercadobitcoin.net/api/BTC/ticker';
+        $url = 'https://www.mercadobitcoin.net/api/BTC/ticker/';
         $response = $this->curl->getCurlApi($url);
         return $response;
     }
@@ -39,7 +39,7 @@ class MercadoBitcoinService {
         //$url = https://www.mercadobitcoin.net/api/BTC/trades/?since=5700
         //$url = https://www.mercadobitcoin.net/api/BTC/trades/1501871369/
         //$url =https://www.mercadobitcoin.net/api/BTC/trades/1501871369/1501891200/
-        $url = 'https://www.mercadobitcoin.net/api/BTC/trades';
+        $url = 'https://www.mercadobitcoin.net/api/BTC/trades/';
         $response = $this->curl->getCurlApi($url);
         return $response;
     }
@@ -48,7 +48,7 @@ class MercadoBitcoinService {
         //https://www.mercadobitcoin.net/api/coin/day-summary/<year>/<month>/<day>/
         $data = date("Y/m/d",strtotime("-1 day",strtotime("now")));
         
-        $url = 'https://www.mercadobitcoin.net/api/BTC/day-summary/'.$data;
+        $url = 'https://www.mercadobitcoin.net/api/BTC/day-summary/'.$data.'/';
         
         $response = $this->curl->getCurlApi($url);
         

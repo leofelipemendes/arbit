@@ -34,3 +34,9 @@ Route::prefix('mbtc')->group(function () {
     Route::get('daysummary', 'MercadoBitcoinsController@getDaySummary');
     
 });
+
+Route::prefix('tickres')->group(function () {
+
+    Route::get('ticker', 'TickersController@getTicker');
+    
+});
