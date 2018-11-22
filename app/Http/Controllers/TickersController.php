@@ -45,8 +45,9 @@ class TickersController extends Controller
     }
     
     public function getTicker() {
-        $x = $this->service->getApiTicker();
-        return $x;
+        //return $this->service->getApiTicker();
+        $data = $this->service->getApiTicker();
+        return view('include.share', compact('data'));
     }
 
     /**
