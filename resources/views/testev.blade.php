@@ -8,9 +8,9 @@
     <div id="monitor"></div>
 @stop
 
-@push('css')
-
-@push('js')
+@section('css')
+@endsection
+@section('js')
 <script>
     $(function () {
         load();
@@ -39,3 +39,4 @@
         });
     }
 </script>
+@endsection

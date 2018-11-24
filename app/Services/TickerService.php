@@ -41,41 +41,41 @@ class TickerService {
     
     public function getApiTicker() {
         $retorno = array();
-        $mercadobitcoin = json_decode($this->mercadoBitcoinService->getApiTickerBtcBrl(),true);
+        $mercadobitcoin = json_decode($this->mercadoBitcoinService->getApiTickerBtcBrl());
         
         $dadosMercadoBitcoin = ['mercadobitcoin'=>[
-            'date' => date('Y-m-d H:i:s', $mercadobitcoin['ticker']['date']),
-            'last' => $mercadobitcoin['ticker']['last'],
-            'high' => $mercadobitcoin['ticker']['high'],
-            'low' => $mercadobitcoin['ticker']['low'],
-            'buy' => $mercadobitcoin['ticker']['buy'],
-            'sell' => $mercadobitcoin['ticker']['sell'],
-            'spread' => round((($mercadobitcoin['ticker']['sell']- $mercadobitcoin['ticker']['buy']) / $mercadobitcoin['ticker']['buy']) * 100,2),
-            'vol' => $mercadobitcoin['ticker']['vol'],
+            'date' => date('Y-m-d H:i:s', $mercadobitcoin->ticker->date),
+            'last' => $mercadobitcoin->ticker->last,
+            'high' => $mercadobitcoin->ticker->high,
+            'low' => $mercadobitcoin->ticker->low,
+            'buy' => $mercadobitcoin->ticker->buy,
+            'sell' => $mercadobitcoin->ticker->sell,
+            'spread' => round((($mercadobitcoin->ticker->sell- $mercadobitcoin->ticker->buy) / $mercadobitcoin->ticker->buy) * 100,2),
+            'vol' => $mercadobitcoin->ticker->vol,
         ]];
-        $bitcoinTradeService = json_decode($this->bitcoinTradeService->getApiTickerBtcBrl(),true);
+        $bitcoinTradeService = json_decode($this->bitcoinTradeService->getApiTickerBtcBrl());
         
         $dadosBitcoinTrade = ['bitcoinTrade'=>[
-            'date' => date('Y-m-d H:i:s', strtotime($bitcoinTradeService['data']['date'])),
-            'last' => $bitcoinTradeService['data']['last'],
-            'high' => $bitcoinTradeService['data']['high'],
-            'low' => $bitcoinTradeService['data']['low'],
-            'buy' => $bitcoinTradeService['data']['buy'],
-            'sell' => $bitcoinTradeService['data']['sell'],
-            'spread' => round((($bitcoinTradeService['data']['sell']- $bitcoinTradeService['data']['buy']) / $bitcoinTradeService['data']['buy']) * 100,2),
-            'vol' => $bitcoinTradeService['data']['volume'],
+            'date' => date('Y-m-d H:i:s', strtotime($bitcoinTradeService->data->date)),
+            'last' => $bitcoinTradeService->data->last,
+            'high' => $bitcoinTradeService->data->high,
+            'low' => $bitcoinTradeService->data->low,
+            'buy' => $bitcoinTradeService->data->buy,
+            'sell' => $bitcoinTradeService->data->sell,
+            'spread' => round((($bitcoinTradeService->data->sell- $bitcoinTradeService->data->buy) / $bitcoinTradeService->data->buy) * 100,2),
+            'vol' => $bitcoinTradeService->data->volume,
         ]];
         
-        $negocieCoinService = json_decode($this->negocieCoinService->getApiTickerBtcBrl(),true);
+        $negocieCoinService = json_decode($this->negocieCoinService->getApiTickerBtcBrl());
         $dadosNegocieCoin = ['negocieCoin'=>[
-            'date' => date('Y-m-d H:i:s', $negocieCoinService['date']),
-            'last' => $negocieCoinService['last'],
-            'high' => $negocieCoinService['high'],
-            'low' => $negocieCoinService['low'],
-            'buy' => $negocieCoinService['buy'],
-            'sell' => $negocieCoinService['sell'],
-            'spread' => round((($negocieCoinService['sell']- $negocieCoinService['buy']) / $negocieCoinService['buy']) * 100,2),
-            'vol' => $negocieCoinService['vol'],
+            'date' => date('Y-m-d H:i:s', $negocieCoinService->date),
+            'last' => $negocieCoinService->last,
+            'high' => $negocieCoinService->high,
+            'low' => $negocieCoinService->low,
+            'buy' => $negocieCoinService->buy,
+            'sell' => $negocieCoinService->sell,
+            'spread' => round((($negocieCoinService->sell- $negocieCoinService->buy) / $negocieCoinService->buy) * 100,2),
+            'vol' => $negocieCoinService->vol,
         ]];
         array_push($retorno, $dadosBitcoinTrade);
         array_push($retorno, $dadosMercadoBitcoin);
