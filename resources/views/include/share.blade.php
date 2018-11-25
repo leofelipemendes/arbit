@@ -1,4 +1,4 @@
-<table class="table table-striped cell-border">
+<table class="table table-striped cell-border"  id="cap_monitor">
         <thead>
             <tr>
                 <th>Exchange</th>
@@ -29,3 +29,18 @@
   @endforeach
   <tbody>
   </table>
+<script>
+     $(function () {
+                $('#cap_monitor').dataTable({
+                    "bProcessing": true,
+                    "sAutoWidth": false,
+                    "bDestroy": true,
+                    "sPaginationType": "bootstrap", // full_numbers
+                    "iDisplayStart ": 10,
+                    "iDisplayLength": 10,
+                    "bPaginate": false, //hide pagination
+                    "bFilter": true, //hide Search bar
+                    "bInfo": false, // hide showing entries
+                });
+            });
+</script>
