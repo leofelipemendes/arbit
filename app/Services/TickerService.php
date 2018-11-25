@@ -43,19 +43,25 @@ class TickerService {
         $retorno = array();
         $mercadobitcoin = json_decode($this->mercadoBitcoinService->getApiTickerBtcBrl());
         
-        $dadosMercadoBitcoin = ['mercadobitcoin'=>[
+        $dadosMercadoBitcoin = [
+            'exchange' =>[
+            'name'=>'mercadobitcoin',
             'date' => date('Y-m-d H:i:s', $mercadobitcoin->ticker->date),
-            'last' => $mercadobitcoin->ticker->last,
-            'high' => $mercadobitcoin->ticker->high,
-            'low' => $mercadobitcoin->ticker->low,
-            'buy' => $mercadobitcoin->ticker->buy,
-            'sell' => $mercadobitcoin->ticker->sell,
+            'last' => round($mercadobitcoin->ticker->last,2),
+            'high' => round($mercadobitcoin->ticker->high,2),
+            'low' => round($mercadobitcoin->ticker->low,2),
+            'buy' => round($mercadobitcoin->ticker->buy,2),
+            'sell' => round($mercadobitcoin->ticker->sell,2),
             'spread' => round((($mercadobitcoin->ticker->sell- $mercadobitcoin->ticker->buy) / $mercadobitcoin->ticker->buy) * 100,2),
             'vol' => $mercadobitcoin->ticker->vol,
-        ]];
+            ]
+            
+        ];
         $bitcoinTradeService = json_decode($this->bitcoinTradeService->getApiTickerBtcBrl());
         
-        $dadosBitcoinTrade = ['bitcoinTrade'=>[
+        $dadosBitcoinTrade = [
+            'exchange'=>[
+            'name' => 'bitcoinTrade',
             'date' => date('Y-m-d H:i:s', strtotime($bitcoinTradeService->data->date)),
             'last' => $bitcoinTradeService->data->last,
             'high' => $bitcoinTradeService->data->high,
@@ -67,7 +73,9 @@ class TickerService {
         ]];
         
         $negocieCoinService = json_decode($this->negocieCoinService->getApiTickerBtcBrl());
-        $dadosNegocieCoin = ['negocieCoin'=>[
+        $dadosNegocieCoin = [
+            'exchange'=>[
+            'name' => 'negocieCoin',
             'date' => date('Y-m-d H:i:s', $negocieCoinService->date),
             'last' => $negocieCoinService->last,
             'high' => $negocieCoinService->high,
