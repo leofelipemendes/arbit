@@ -29,11 +29,12 @@
 
     function load() {
         SetupAjax();
-
+        $('#monitor').html('Carregando exchanges');
         $.ajax({
             type: 'GET',
             url: '/tickers/ticker',
             success: function (data) {
+                
                 $('#monitor').html(data);
             }
         });
